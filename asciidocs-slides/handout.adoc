@@ -1,0 +1,56 @@
+= First Come First Served (FCFS)
+Jakob Huemer-Fistelberger / Simon Eder
+1.0, 2024-02-12
+
+== What is FCFS?
+
+- *Definition*: Processes execute in FIFO order (non-preemptive).
+- Runs each job *to completion*.
+- Known for **long average waiting times** due to no burst-time sorting.
+
+== Key Characteristics
+
+- **Simple & Fair**: No prioritization; easy to implement.
+- **Convoy Effect**: Long processes delay shorter ones.
+- *No preemption* → Suitable for batch systems.
+
+== Example Scenarios
+
+|===
+|Process Order |P1 |P2 |P3 |Avg Waiting Time
+
+|Original (24, 3, 3 ms)
+|0ms
+|24ms
+|27ms
+|*17ms*
+
+|Optimized (3, 3, 24 ms)
+|0ms
+|3ms
+|6ms
+|*3ms*
+|===
+
+*Insight*: Order impacts efficiency. Shortest Job First (SJF) mitigates this.
+
+== Preemptive vs Non-Preemptive
+[.text-left]
+- *Non-Preemptive (FCFS)*:
+* ✔️ Low overhead | ❌ Convoy effect | Example: Batch systems
+- *Preemptive*:
+* ✔️ Responsive | ❌ High context-switching | Example: Round Robin
+
+== Scheduling Metrics
+
+- *Burst Time*: Actual CPU execution duration.
+- *Waiting Time*: Total time in ready queue.
+- *Turnaround Time*: Exit time − Arrival time.
+- *Response Time*: First CPU allocation − Arrival time.
+
+// Implementation Note: FIFO queue, no interruptions.
+
+== Sources
+
+- https://afteracademy.com/blog/what-is-burst-arrival-exit-response-waiting-turnaround-time-and-throughput/
+- Moodle PDF | GeeksforGeeks | YouTube Video

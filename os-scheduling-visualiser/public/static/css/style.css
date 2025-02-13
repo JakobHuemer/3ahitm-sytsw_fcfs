@@ -1,0 +1,272 @@
+:root {
+  --color-black: #1A120B; /* Dark Black */
+  --color-brown: #3C2A21; /* Brown */
+  --color-beige: #D5CEA3; /* Beige */
+  --color-light-beige: #E5E5CB; /* Light Beige */
+
+  /* Assigning text colors */
+  --text-primary: var(--color-black); 
+  --text-secondary: var(--color-brown); 
+  --text-accent: var(--color-beige);
+  --text-muted: var(--color-light-beige); 
+}
+
+
+  html {
+    height:100%;
+  }
+
+  .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #3C2A21 50%, #1A120B 50% );
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+
+  .bg3 {
+    animation-duration:5s;
+  }
+
+
+
+h1 {
+  font-family:monospace;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: var(--color-black);
+}
+
+h1,h2{
+  color: var(--color-beige);
+}
+p{
+  color: var(--color-beige);
+}
+
+label{
+  color: var(--color-beige);
+}
+.container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--color-brown);
+  border: solid 1px var(--color-black) ;
+  border-radius: 2%;
+}
+
+.main-heading{
+  text-align: center;
+}
+
+.output-section {
+  flex: 1;
+  background: var(--color-black);
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1),
+    0px 2px 32px rgba(15, 91, 206, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.input-section {
+  padding: 1rem 2rem 2rem 2rem;
+  background: var(--color-black);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1),
+    0px 2px 32px rgba(15, 91, 206, 0.1);
+  border-radius: 15px;
+  min-width: 230px;
+  max-width: 335px;
+  max-height: 500px;
+}
+
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#algo-value {
+  background-color: var(--color-beige);
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 8px 10px;
+}
+
+#gantt-chart-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  color: #6d7187;
+}
+
+.job-container {
+  display: flex;
+}
+
+.job {
+  width: 40px;
+  height: 35px;
+  border: 1px solid #8da6ff;
+  background-color: #edf4ff;
+  color: #424242;
+}
+
+.time-container {
+  display: flex;
+}
+
+.time {
+  width: 40px;
+  height: 20px;
+  border: 1px solid #fff;
+  color: #444e5c;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.styled-table tr {
+  height: 40px;
+}
+
+.styled-table th,
+.styled-table td {
+  text-align: left;
+  padding: 15px;
+  border: 1px solid #e1e1e1;
+ 
+}
+
+.styled-table td {
+  color: var(--color-beige);
+}
+
+.styled-table th {
+  background-color: var(--color-beige);
+  color: var(--color-black);
+}
+
+#avg-row {
+  position: relative;
+  bottom: 0;
+}
+
+.header-cell {
+  font-size: 1rem;
+  font-weight: 500;
+  height: 40px;
+  white-space: nowrap;
+  color: #6d7187;
+  background-color: #f9f9fb;
+}
+
+.form-section {
+  margin: 20px 0px;
+}
+
+label {
+  display: inline-block;
+  font-size: 14px;
+  padding-bottom: 8px;
+}
+
+input {
+  width: calc(100% - 26px);
+  border: 1px solid #c5c7d0;
+  border-radius: 5px;
+  padding: 11px 12px;
+  transition: all 0.2s ease-out;
+  font-size: 14px;
+}
+
+#output-desc{
+  font-size: 50px;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 80px;
+}
+
+input:hover {
+  background-color: #fafafa;
+  border-color: rgb(179, 179, 179);
+}
+
+input:focus {
+  border-color: #2684ff;
+  background-color: #fff;
+  outline: none;
+}
+
+button {
+  background-color: var(--color-brown);
+  border-radius: 5px;
+  color: var(--color-beige);
+  width: 5.625rem;
+  height: 2.5rem;
+  transition: background-color 0.2s ease-out;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: var(--color-light-beige);
+  color: var(--color-brown);
+  font-weight: bold;
+}
+
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms ease-out;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+#algo-select {
+  width: 100%;
+  padding: 11px 12px;
+  font-size: 14px;
+  border: 1px solid #c5c7d0;
+  border-radius: 5px;
+}
+
+#algo-select:focus {
+  outline: none;
+  border-color: #2684ff;
+  box-shadow: 0 0 0 1px #74b0ff;
+}
+
+#algo-select option:checked {
+  background-color: #2684ff;
+  color: var(--color-beige);
+}
+
