@@ -1,0 +1,157 @@
+= First Come First Served (FCFS)
+Jakob Huemer-Fistelberger / Simon Eder
+1.0, 2024-02-12
+ifndef::imagesdir[:imagesdir: images]
+:customcss: black.css
+:icons: font
+:source-highlighter: highlight.js
+:revealjs_showSlideNumber: all
+// :revealjs_theme: black
+
+== What is FCFS?
+
+[.text-left]
+- *Definition*: Processes are allocated to the CPU in the order they arrive (FIFO).
+- *Non-preemptive*: Once started, a process runs *to completion*.
+- *Key Metric*: Often results in **long average waiting times**.
+
+
+== Key Characteristics
+
+[.text-left]
+- **Simplicity**: Easy to understand and implement.
+- **Fairness**: No prioritization — "first arrived, first served".
+- **Drawback**:
+* No consideration for process length.
+* One long process can delay all others (*Convoy Effect*).
+
+
+== Example Scenario
+
+image::image-2025-02-12-19-32-42-265.png[]
+
+=== Waiting Times example 1:
+- P1: 0ms
+- P2: 24ms
+- P3: 27ms
+
+*Average: 17ms*
+
+=== Waiting Times example 2:
+
+- P1: 0ms
+- P2: 3ms
+- P3: 6ms
+
+*Average: 3ms*
+
+== Why Long Waiting Times?
+
+[.text-left]
+
+*No Sorting*: Processes aren’t ordered by burst time.
+
+Shortest Job First (SJF) fixes that
+
+== Non-Preemptive vs Preemptive
+
+[.mini]
+|===
+|Preemption |Non-Preemption
+
+|Processes can be interrupted mid-execution |Processes run to completion once started
+
+|Better for time-sharing systems |Suitable for batch processing systems
+
+|Higher overhead (frequent context switches) |Lower overhead (fewer interruptions)
+
+|Provides better responsiveness |May cause convoy effect
+
+|Examples: Round Robin, SRTF |Examples: FCFS, Non-preemptive SJF
+|===
+
+
+// Ask: "Why is preemption critical for modern OS?"
+
+== Implementation
+
+
+
+[.text-left]
+*Using a FIFO Queue:*
+
+[.codeblock]
+[source,java]
+----
+private final Queue<MyProcess> queue = new ArrayBlockingQueue<>( 10 );
+
+public void schedule( MyProcess myProcess ) {
+    queue.add( myProcess );
+}
+
+public void runCpu() {
+    while ( !queue.isEmpty() ) {
+        var process = queue.poll();
+        // non-preemptive
+        process.run();
+    }
+}
+----
+
+== Live Demo
+
+== Metrics
+
+=== Key Scheduling Metrics
+
+*Burst Time*:
+
+- Total CPU execution time of process
+- Formula: End time - Start time
+
+*Arrival Time*:
+
+- When process enters ready queue
+- Example: P1=0ms, P2=1ms, P3=2ms
+
+// P1 CPU allocation at 0ms P2 at 1ms
+
+=== Timing Metrics
+
+*Exit Time*:
+
+- When process completes execution
+
+*Response Time*:
+
+- First CPU allocation - Arrival time
+
+*Example (FCFS)*:
+
+- P2: 8ms - 1ms = 7ms
+- P3: 15ms - 2ms = 13ms
+
+=== Timing Metrics
+
+*Waiting Time*:
+
+- Total ready queue time
+
+*Turnaround Time*:
+
+- Completion to arrival duration
+
+=== Summary
+
+1. Burst Time = Actual CPU usage
+2. Arrival/Exit = Process lifecycle markers
+3. Response measures initial delay
+4. Turnaround reflects total processing duration
+
+
+== Sources
+
+- https://afteracademy.com/blog/what-is-burst-arrival-exit-response-waiting-turnaround-time-and-throughput/
+- https://www.geeksforgeeks.org/difference-between-arrival-time-and-burst-time-in-cpu-scheduling/
+- https://www.youtube.com/watch?v=VSMAjMfJ6KQ&t=54s
+- Moodle PDF

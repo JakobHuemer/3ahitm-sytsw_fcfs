@@ -1,0 +1,66 @@
+= First Come, First Served (FCFS) Scheduling
+Jakob Huemer-Fistelberger / Simon Eder
+Version 1.0 | 2024-02-12
+
+== What is FCFS?
+- *Definition*: Processes are executed in the order they arrive (*FIFO*).
+- *Non-preemptive*: Once a process starts, it runs *to completion*.
+- *Key Metric*: Can result in *long average waiting times*.
+
+== Key Characteristics
+✔ *Simple & Fair*: Easy to implement, no prioritization.
+❌ *Convoy Effect*: Long processes delay shorter ones.
+❌ *No Optimization*: Doesn’t consider burst time.
+
+== Example: Waiting Times
+*Scenario 1 (High Waiting Time):*
+- P1: 0ms, P2: 24ms, P3: 27ms -> *Average: 17ms*
+
+*Scenario 2 (Better Distribution):*
+- P1: 0ms, P2: 3ms, P3: 6ms -> *Average: 3ms*
+
+== Preemptive vs. Non-Preemptive Scheduling
+[options="header"]
+|===
+| Preemptive | Non-Preemptive
+| Processes can be interrupted | Runs to completion once started
+| Higher overhead (context switches) | Lower overhead
+| Better for time-sharing | May cause convoy effect
+| Examples: Round Robin, SRTF | Examples: FCFS, Non-preemptive SJF
+|===
+
+== Basic FCFS Implementation (FIFO Queue in Java)
+[source,java]
+----
+private final Queue<MyProcess> queue = new ArrayBlockingQueue<>(10);
+public void schedule(MyProcess myProcess) {
+    queue.add(myProcess);
+}
+public void runCpu() {
+    while (!queue.isEmpty()) {
+        var process = queue.poll();
+        process.run();
+    }
+}
+----
+
+== Key Scheduling Metrics
+- *Burst Time*: CPU execution time (End time - Start time).
+- *Arrival Time*: When a process enters the queue.
+- *Waiting Time*: Time spent in the ready queue.
+- *Turnaround Time*: Completion time - Arrival time.
+- *Response Time*: First CPU allocation - Arrival time.
+
+== Summary
+1. FCFS executes processes in arrival order (*FIFO*).
+2. *Pros*: Simple, fair, and low overhead.
+3. *Cons*: Can cause long waiting times due to *Convoy Effect*.
+4. *Key Metrics*: Burst, Arrival, Waiting, Response, and Turnaround Time.
+5. *Preemption vs. Non-Preemption*: Preemption helps avoid delays but adds overhead.
+
+== Sources
+- https://afteracademy.com/blog/what-is-burst-arrival-exit-response-waiting-turnaround-time-and-throughput/
+- https://www.geeksforgeeks.org/difference-between-arrival-time-and-burst-time-in-cpu-scheduling/
+- https://www.youtube.com/watch?v=VSMAjMfJ6KQ&t=54s
+- Moodle PDF
+
